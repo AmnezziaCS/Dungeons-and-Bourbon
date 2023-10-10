@@ -4,8 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dungeons and Bourbon", "Dungeons and Bourbon\Dungeons and Bourbon.csproj", "{A9C039C4-B0FA-4381-A77D-0622F2E63590}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C765FFFA-A0BE-4D96-8982-4C60FE274E9A} = {C765FFFA-A0BE-4D96-8982-4C60FE274E9A}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{C765FFFA-A0BE-4D96-8982-4C60FE274E9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{C765FFFA-A0BE-4D96-8982-4C60FE274E9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
