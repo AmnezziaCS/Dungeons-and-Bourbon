@@ -10,7 +10,7 @@ namespace Dungeon_Bourbon
     {
         static void Main(string[] args)
         {
-            bool IsOn = true;
+            bool isOn = true;
 
             Console.WriteLine(@"
                         
@@ -25,7 +25,7 @@ namespace Dungeon_Bourbon
                  =   .########...#######..##....##..######...#######..##....##....########....##.......########...#######...#######..##.....##.########...#######..##....##  =
                  =                                                                                                                                                           =
                  =============================================================================================================================================================
-                                                                                  Projet C# 3 eme année ENIGMA
+                                                                                  Projet C# 3 éme année ENIGMA
 
                                                                                             
 
@@ -40,7 +40,7 @@ namespace Dungeon_Bourbon
 ");
             Console.ReadKey();
 
-            while (IsOn == true)
+            do
             {
                 Console.Clear();
                 Console.WriteLine(@"
@@ -60,104 +60,40 @@ namespace Dungeon_Bourbon
 
 
 ");
-                Console.WriteLine("\nMenu : ");
-                Console.WriteLine("\n1 - Voyager");
-                Console.WriteLine("\n2 - Aller au centre-ville");
-                Console.WriteLine("\n3 - Voir mon équipement");
-                Console.WriteLine("\n4 - Quitter");
-                string input = Console.ReadLine();
-                int choix;
-                bool isChoixOk = false;
+                Console.Write("\nMenu : \n\n1 - Voyager\n\n2 - Aller au centre-ville\n\n3 - Voir mon équipement\n\n4 - Quitter\n");
+                string userGlobalMenuPickStrigified = Console.ReadLine();
+                int userGlobalMenuPick;
 
-                do
+                if (!int.TryParse(userGlobalMenuPickStrigified, out userGlobalMenuPick))
                 {
-                    if (int.TryParse(input, out choix))
-                    {
-                        switch (choix)
+                    userChoiceErrorMessage();
+                    continue;
+                }
+
+                switch (userGlobalMenuPick)
+                {
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine("Vers quelle contrée voulez-vous voyager ?"); // Will do
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        bool inBuilding = true;
+                        do
                         {
-                            case 1:
-                                isChoixOk = true;
-                                Console.Clear();
-                                Console.WriteLine("Vers quelle contrée voulez-vous voyager ?");
-                                Console.ReadKey();
-                                break;
-                            case 2:
-                                bool inBuilding = true;
-                                do
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine("Vous vous retrouvez face à deux bâtiments, dans lequel rentrez-vous : ");
-                                    Console.WriteLine("\n1 - Entrer dans le magasin");
-                                    Console.WriteLine("\n2 - Entrer dans l'auberge de la flûte étincellante");
-                                    Console.WriteLine("\n3 - Retour vers l'entrée du village");
-
-                                    string buildingInput = Console.ReadLine();
-                                    int buildingChoice;
-
-                                    if (int.TryParse(buildingInput, out buildingChoice))
-                                    {
-                                        switch (buildingChoice)
-                                        {
-                                            case 1:
-                                                isChoixOk = true;
-                                                Console.Clear();
-                                                Console.WriteLine("Vous êtes dans le magasin.");
-                                                Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
-                                                Console.ReadKey();
-                                                break;
-                                            case 2:
-                                                isChoixOk = true;
-                                                Console.Clear();
-                                                Console.WriteLine("Vous êtes dans l'auberge de la flûte étincellante.");
-                                                Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
-                                                Console.ReadKey();
-                                                break;
-                                            case 3:
-                                                isChoixOk = true;
-                                                inBuilding = false;
-                                                break;
-                                            default:
-                                                isChoixOk = true;
-                                                Console.Clear();
-                                                Console.WriteLine("Choix invalide.");
-                                                Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
-                                                Console.ReadKey();
-                                                break;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine("T'es trop bourré pour marcher droit ou quoi ??");
-                                        Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
-                                        Console.ReadKey();
-                                    }
-                                } while (inBuilding);
-                                break;
-                            case 3:
-                                isChoixOk = true;
-                                Console.Clear();
-                                Console.WriteLine("Voir mon équipement :");
-                                Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
-                                Console.ReadKey();
-                                break;
-                            case 4:
-                                isChoixOk = true;
-                                Console.Clear();
-                                Console.WriteLine("Voulez vous vraiment quiter ce monde merveilleux ? êtes vous bien passé aux toilettes avant de vous endormir ?");
-                                Console.WriteLine("\n1 - Oui");
-                                Console.WriteLine("\n2 - Non");
-                                string confirmation = Console.ReadLine();
-                                int choixConfirmation;
-
-                                if (int.TryParse(confirmation, out choixConfirmation))
-                                {
-                                    switch (choixConfirmation)
-                                    {
-                                        case 1:
-                                            IsOn = false;
-                                            Console.Clear();
-                                            Console.WriteLine(@"
+                            inBuilding = inBuildingProcess();
+                        } while (inBuilding);
+                        break;
+                    case 3:
+                        Console.Clear();
+                        Console.WriteLine("Voir mon équipement :"); // Will do
+                        Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
+                        Console.ReadKey();
+                        break;
+                    case 4:
+                        isOn = false;
+                        Console.Clear();
+                        Console.WriteLine(@"
                         
                  =============================================================================================================================================================
                  =                                                                                                                                                           =        
@@ -183,46 +119,59 @@ namespace Dungeon_Bourbon
                                                                                                                   
                                                                                                                                         Appuyez sur Entrée pour quitter...
 ");
-                                            Console.ReadKey();
-                                            break;
-                                        case 2:
-                                            Console.WriteLine("Retour au menu principal...");
-                                            Console.ReadKey();
-                                            break;
-                                        default:
-                                            Console.WriteLine("Choix invalide. Retour au menu principal...");
-                                            Console.ReadKey();
-                                            break;
-                                    }
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Choix invalide. Retour au menu principal...");
-                                    Console.ReadKey();
-                                }
-                                break;
-
-
-                            default:
-                                Console.Clear();
-                                Console.WriteLine("Choix invalide.");
-                                Console.ReadKey();
-                                isChoixOk = false;
-                                break;
-                        }
-                    }
-                    else if (isChoixOk == false)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("T'es trop bourré pour marcher droit ou quoi ??.  [Appuyer sur Entrée ...]");
                         Console.ReadKey();
                         break;
-                    }
-                } while (isChoixOk == false);
-            }
+                    default:
+                        userChoiceErrorMessage();
+                        break;
+                }
+            } while (isOn);
         }
 
+        static void userChoiceErrorMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("T'es trop bourré pour marcher droit ou quoi ??");
+            Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
+            Console.ReadKey();
+        }
 
+        static bool inBuildingProcess()
+        {
+            Console.Clear();
+            Console.Write("Vous vous retrouvez face à deux bâtiments, dans lequel rentrez-vous :\n\n1 - Entrer dans le magasin\n\n2 - Entrer dans l'auberge de la flûte étincellante\n\n3 - Retour vers l'entrée du village\n");
+
+            string userBuildingMenuPickStringified = Console.ReadLine();
+            int userBuildingMenuPick;
+
+            if (!int.TryParse(userBuildingMenuPickStringified, out userBuildingMenuPick))
+            {
+                userChoiceErrorMessage();
+                return true;
+            }
+
+            switch (userBuildingMenuPick)
+            {
+                case 1:
+                    Console.Clear();
+                    Console.WriteLine("Vous êtes dans le magasin."); // Will do
+                    Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
+                    Console.ReadKey();
+                    break;
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine("Vous êtes dans l'auberge de la flûte étincellante."); // Will do
+                    Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
+                    Console.ReadKey();
+                    break;
+                case 3:
+                    return false;
+                default:
+                    userChoiceErrorMessage();
+                    break;
+            }
+            return true;
+        }
     }
 }
 
