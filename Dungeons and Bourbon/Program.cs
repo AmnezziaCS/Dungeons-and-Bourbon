@@ -11,8 +11,8 @@ namespace Dungeon_Bourbon
         static void Main(string[] args)
         {
             bool IsOn = true;
-            
-                Console.WriteLine(@"
+
+            Console.WriteLine(@"
                         
                  =============================================================================================================================================================
                  =                                                                                                                                                           =        
@@ -38,7 +38,7 @@ namespace Dungeon_Bourbon
                                                                                                                   
                                                                                                                                         Appuyez sur Entrée pour continuer...
 ");
-                Console.ReadKey();
+            Console.ReadKey();
 
             while (IsOn == true)
             {
@@ -186,38 +186,7 @@ namespace Dungeon_Bourbon
                                             Console.ReadKey();
                                             break;
                                         case 2:
-                                            /*Console.WriteLine("Retour au menu principal...");*/ 
-                                            Console.WriteLine(@"
-                                        
-                                                  __
-                                                .d$$b
-                                              .' TO$;\
-                                             /  : TP._;
-                                            / _.;  :Tb|
-                                           /   /   ;j$j
-                                       _.-""       d$$$$
-                                     .' ..       d$$$$;
-                                    /  /P'      d$$$$P. |\
-                                   /   ""      .d$$$P' |\^""l
-                                 .'           `T$P^""""""""""  :
-                             ._.'      _.'                ;
-                          `-.-"".-'-' ._.       _.-""    .-""
-                        `.-"" _____  ._              .-""
-                       -(.g$$$$$$$b.              .'
-                         """"^^T$$$P^)            .(:
-                           _/  -""  /.'         /:/;
-                        ._.'-'`-'  "")/         /;/;
-                     `-.-""..--""""   "" /         /  ;
-                    .-"" ..--""""        -'          :
-                    ..--""""--.-""         (\      .-(\
-                      ..--""""              `-\(\/;`
-                        _.                      :
-                                                ;`-
-                                               :\
-                                               ; 
-
-
-");
+                                            Console.WriteLine("Retour au menu principal...");
                                             Console.ReadKey();
                                             break;
                                         default:
@@ -256,3 +225,40 @@ namespace Dungeon_Bourbon
 
     }
 }
+
+
+
+/* 
+                                        
+                                                  __
+                                                .d$$b
+                                              .' TO$;\
+                                             /  : TP._;
+                                            / _.;  :Tb|
+                                           /   /   ;j$j
+                                       _.-""       d$$$$
+                                     .' ..       d$$$$;
+                                    /  /P'      d$$$$P. |\
+                                   /   ""      .d$$$P' |\^""l
+                                 .'           `T$P^""""""""""  :
+                             ._.'      _.'                ;
+                          `-.-"".-'-' ._.       _.-""    .-""
+                        `.-"" _____  ._              .-""
+                       -(.g$$$$$$$b.              .'
+                         """"^^T$$$P^)            .(:
+                           _/  -""  /.'         /:/;
+                        ._.'-'`-'  "")/         /;/;
+                     `-.-""..--""""   "" /         /  ;
+                    .-"" ..--""""        -'          :
+                    ..--""""--.-""         (\      .-(\
+                      ..--""""              `-\(\/;`
+                        _.                      :
+                                                ;`-
+                                               :\
+                                               ; 
+
+
+
+
+ 
+ */
