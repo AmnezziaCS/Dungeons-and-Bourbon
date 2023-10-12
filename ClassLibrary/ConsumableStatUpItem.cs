@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    internal class ConsumableStatUpItem: Item
+    public class ConsumableStatUpItem: Item
     {
         private int _givenDamage;
         private int _givenHealth;

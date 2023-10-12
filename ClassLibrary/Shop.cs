@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    internal class Shop
+    public class Shop
     {
         private List<Item> _itemList;
 

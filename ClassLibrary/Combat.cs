@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    internal class Combat
+    public class Combat
     {
         private string _status;
         private Player _player;
@@ -29,35 +29,40 @@
             char playerPick;
             do
             {
+                Console.WriteLine("(a) pour attaquer");
                 playerPick = Console.ReadKey().KeyChar;
             } while (playerPick != 'a'); // Will change when consumable items are implemented
 
             if (playerPick == 'a')
             {
+                Console.Clear();
                 bool isPlayerFaster = Player.Speed >= currentMonster.Speed;
                 int playerAttack = Player.attack(); // Will pass potential damage buff here when implemented
                 int monsterAttack = currentMonster.attack();
                 if (isPlayerFaster)
                 {
                     currentMonster.Health -= playerAttack;
+                    Console.WriteLine($"{currentMonster.Name} a {currentMonster.Health} points de vie");
                     if (checkIfTurnHasEndedEarly(currentMonster))
                     {
                         return;
                     }
                     CurrentPlayerHealth -= monsterAttack;
+                    Console.WriteLine($"Il vous reste {CurrentPlayerHealth} points de vie");
                 } else
                 {
                     CurrentPlayerHealth -= monsterAttack;
+                    Console.WriteLine($"Il vous reste {CurrentPlayerHealth} points de vie");
                     if (checkIfTurnHasEndedEarly(currentMonster))
                     {
                         return;
                     }
                     currentMonster.Health -= playerAttack;
+                    Console.WriteLine($"{currentMonster.Name} a {currentMonster.Health} points de vie");
                 }
 
                 bool placeHolder = checkIfTurnHasEndedEarly(currentMonster);
             }
-            
         }
 
         private bool checkIfTurnHasEndedEarly(Monster currentMonster)
@@ -65,16 +70,22 @@
             if (currentMonster.Health <= 0)
             {
                 RemainingMonstersList.Remove(currentMonster);
+                Console.WriteLine($"{currentMonster.Name} a été vaincu");
+                if (RemainingMonstersList.Count == 0)
+                {
+                    Status = "victory";
+                    Console.WriteLine($"Tout les monstres du stage {Stage.StageName} ont été vaincus, vous gagnez {Stage.RewardedXP}XP et ${Stage.RewardedGold} !");
+                    if (Player.MaximumStageReached <= Stage.StageId)
+                    {
+                        Console.WriteLine("Le stage suivant a été débloqué !");
+                    }
+                }
                 return true;
             }
             if (CurrentPlayerHealth <= 0)
             {
                 Status = "defeat";
-                return true;
-            }
-            if (RemainingMonstersList.Count == 0)
-            {
-                Status = "victory";
+                Console.WriteLine("Vous avez été vaincu");
                 return true;
             }
             return false;

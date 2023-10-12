@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    internal class Item
+    public class Item
     {
         private string _name;
         private int _price;

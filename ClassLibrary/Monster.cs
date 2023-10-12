@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    internal class Monster: Entity, IAttack
+    public class Monster: Entity, IAttack
     {
         public Monster(int damage, int health, int speed, int luck, string name): base(damage, health, speed, luck, name)
         {

@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    internal class Player: Entity, IAttack
+    public class Player: Entity, IAttack
     {
         private int _totalGold;
         private int _totalXp;
@@ -8,6 +8,7 @@
         private Weapon _currentWeapon;
         private Armor _currentArmor;
         private List<Item> _inventory;
+        private int _maximumStageReached;
 
         public int TotalGold { get => _totalGold; set => _totalGold = value; }
         public int TotalXp { get => _totalXp; set => _totalXp = value; }
@@ -15,8 +16,9 @@
         public Weapon CurrentWeapon { get => _currentWeapon; set => _currentWeapon = value; }
         public Armor CurrentArmor { get => _currentArmor; set => _currentArmor = value; }
         public List<Item> Inventory { get => _inventory; set => _inventory = value; }
+        public int MaximumStageReached { get => _maximumStageReached; set => _maximumStageReached = value; }
 
-        public Player(int totalGold, int totalXp, int currentLevel, Weapon currentWeapon, Armor currentArmor,  int damage, int health, int speed, int luck, string name, List<Item> inventory) : base(damage, health, speed, luck, name)
+        public Player(int totalGold, int totalXp, int currentLevel, Weapon currentWeapon, Armor currentArmor, int damage, int health, int speed, int luck, string name, List<Item> inventory, int maximumStageReached) : base(damage, health, speed, luck, name)
         {
             TotalGold = totalGold;
             TotalXp = totalXp;
@@ -24,6 +26,7 @@
             CurrentWeapon = currentWeapon;
             CurrentArmor = currentArmor;
             Inventory = inventory;
+            MaximumStageReached = maximumStageReached;
          }
 
         public int attack(int bonusDamage = 0)

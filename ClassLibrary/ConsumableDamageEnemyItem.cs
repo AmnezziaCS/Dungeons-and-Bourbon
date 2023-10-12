@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    internal class ConsumableDamageEnemyItem: Item
+    public class ConsumableDamageEnemyItem: Item
     {
         private int _damage;
 
