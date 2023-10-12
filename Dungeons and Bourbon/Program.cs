@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using ClassLibrary;
 
 namespace Dungeon_Bourbon
 {
@@ -52,6 +51,7 @@ namespace Dungeon_Bourbon
                     case 4:
                         isOn = false;
                         Console.Clear();
+                        Console.Write(endTitleASCIIString);
                         Console.ReadKey();
                         break;
                     default:
