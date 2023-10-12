@@ -10,10 +10,9 @@ namespace Dungeon_Bourbon
             string startTitleASCIIString = getASCIIArt("StartMenu");
             string endTitleASCIIString = getASCIIArt("ExitMenu");
             string menuASCIIString = getASCIIArt("Menu");
-
+            
             Console.WriteLine(startTitleASCIIString);
             Console.ReadKey();
-
             do
             {
                 Console.Clear();
@@ -71,6 +70,8 @@ namespace Dungeon_Bourbon
 
         static bool inBuildingProcess()
         {
+            string innASCIIString = getASCIIArt("Inn");
+            string shopASCIIString = getASCIIArt("Shop");
             Console.Clear();
             Console.Write("Vous vous retrouvez face à deux bâtiments, dans lequel rentrez-vous :\n\n1 - Entrer dans le magasin\n\n2 - Entrer dans l'auberge de la flûte étincellante\n\n3 - Retour vers l'entrée du village\n");
 
@@ -87,12 +88,14 @@ namespace Dungeon_Bourbon
             {
                 case 1:
                     Console.Clear();
+                    Console.WriteLine(shopASCIIString);
                     Console.WriteLine("Vous êtes dans le magasin."); // Will do
                     Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
                     Console.ReadKey();
                     break;
                 case 2:
                     Console.Clear();
+                    Console.WriteLine(innASCIIString);
                     Console.WriteLine("Vous êtes dans l'auberge de la flûte étincellante."); // Will do
                     Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
                     Console.ReadKey();
