@@ -22,5 +22,11 @@
             StageId = stageId;
             StageName = stageName;
         }
+
+        /// <summary>
+        /// EF constructor
+        /// </summary>
+        public Stage()
+        { }
     }
 }

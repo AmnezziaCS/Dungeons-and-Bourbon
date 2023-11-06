@@ -6,10 +6,16 @@
 
         public int GivenDamage { get => _givenDamage; set => _givenDamage = value; }
 
-        public Weapon(int givenDamage, string name, int price) : base(name, price)
+        public Weapon(int givenDamage, string name, int price, int id, Player currentAssignedPlayer, int currentAssignedPlayerId) : base(id, name, price)
         {
             _givenDamage = givenDamage;
         }
+
+        /// <summary>
+        /// EF constructor
+        /// </summary>
+        public Weapon() : base()
+        { }
 
         public string returnItemAsString()
         {

@@ -6,10 +6,16 @@
 
         public int GivenHealth { get => _givenHealth; set => _givenHealth = value; }
 
-        public Armor(int givenHealth, string name, int price) : base(name, price)
+        public Armor(int givenHealth, string name, int price, int id) : base(id, name, price)
         {
             GivenHealth = givenHealth;
         }
+
+        /// <summary>
+        /// EF constructor
+        /// </summary>
+        public Armor(): base()
+        { }
 
         public string returnItemAsString()
         {

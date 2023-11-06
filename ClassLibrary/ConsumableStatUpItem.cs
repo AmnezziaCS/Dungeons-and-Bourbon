@@ -12,7 +12,7 @@
         public int GivenSpeed { get => _givenSpeed; set => _givenSpeed = value; }
         public int GivenLuck { get => _givenLuck; set => _givenLuck = value; }
 
-        public ConsumableStatUpItem(int givenDamage, int givenHealth, int givenSpeed, int givenLuck, string name, int price) : base(name, price)
+        public ConsumableStatUpItem(int givenDamage, int givenHealth, int givenSpeed, int givenLuck, string name, int price, int id) : base(id, name, price)
         {
             GivenDamage = givenDamage;
             GivenHealth = givenHealth;

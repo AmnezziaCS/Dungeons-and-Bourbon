@@ -7,7 +7,6 @@
         private int _currentLevel;
         private Weapon _currentWeapon;
         private Armor _currentArmor;
-        private List<Item> _inventory;
         private int _maximumStageReached;
 
         public int TotalGold { get => _totalGold; set => _totalGold = value; }
@@ -15,19 +14,23 @@
         public int CurrentLevel { get => _currentLevel; set => _currentLevel = value; }
         public Weapon CurrentWeapon { get => _currentWeapon; set => _currentWeapon = value; }
         public Armor CurrentArmor { get => _currentArmor; set => _currentArmor = value; }
-        public List<Item> Inventory { get => _inventory; set => _inventory = value; }
         public int MaximumStageReached { get => _maximumStageReached; set => _maximumStageReached = value; }
 
-        public Player(int totalGold, int totalXp, int currentLevel, Weapon currentWeapon, Armor currentArmor, int damage, int health, int speed, int luck, string name, List<Item> inventory, int maximumStageReached) : base(damage, health, speed, luck, name)
+        public Player(int totalGold, int totalXp, int currentLevel, Weapon currentWeapon, Armor currentArmor, int damage, int health, int speed, int luck, string name, int maximumStageReached, int id) : base(id, damage, health, speed, luck, name)
         {
             TotalGold = totalGold;
             TotalXp = totalXp;
             CurrentLevel = currentLevel;
             CurrentWeapon = currentWeapon;
             CurrentArmor = currentArmor;
-            Inventory = inventory;
             MaximumStageReached = maximumStageReached;
          }
+
+        /// <summary>
+        /// EF constructor
+        /// </summary>
+        public Player() : base()
+        { }
 
         public int attack(int bonusDamage = 0)
         {
@@ -51,11 +54,6 @@
             }
 
             return level;
-        }
-
-        public void addItemToInventory(Item itemToAdd)
-        {
-            Inventory.Add(itemToAdd);
         }
     }
 }
