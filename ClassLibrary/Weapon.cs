@@ -2,14 +2,7 @@
 {
     public class Weapon: Item, IReturnItemAsString
     {
-        private int _givenDamage;
-
-        public int GivenDamage { get => _givenDamage; set => _givenDamage = value; }
-
-        public Weapon(int givenDamage, string name, int price, int id, Player currentAssignedPlayer, int currentAssignedPlayerId) : base(id, name, price)
-        {
-            _givenDamage = givenDamage;
-        }
+        public int GivenDamage { get; set; }
 
         /// <summary>
         /// EF constructor

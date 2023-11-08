@@ -1,30 +1,16 @@
-﻿namespace ClassLibrary
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ClassLibrary
 {
     public class Player: Entity, IAttack
     {
-        private int _totalGold;
-        private int _totalXp;
-        private int _currentLevel;
-        private Weapon _currentWeapon;
-        private Armor _currentArmor;
-        private int _maximumStageReached;
+        public int TotalGold { get; set; }
+        public int TotalXp { get; set; }
+        public int CurrentLevel { get; set; }
+        public int MaximumStageReached { get; set; }
 
-        public int TotalGold { get => _totalGold; set => _totalGold = value; }
-        public int TotalXp { get => _totalXp; set => _totalXp = value; }
-        public int CurrentLevel { get => _currentLevel; set => _currentLevel = value; }
-        public Weapon CurrentWeapon { get => _currentWeapon; set => _currentWeapon = value; }
-        public Armor CurrentArmor { get => _currentArmor; set => _currentArmor = value; }
-        public int MaximumStageReached { get => _maximumStageReached; set => _maximumStageReached = value; }
-
-        public Player(int totalGold, int totalXp, int currentLevel, Weapon currentWeapon, Armor currentArmor, int damage, int health, int speed, int luck, string name, int maximumStageReached, int id) : base(id, damage, health, speed, luck, name)
-        {
-            TotalGold = totalGold;
-            TotalXp = totalXp;
-            CurrentLevel = currentLevel;
-            CurrentWeapon = currentWeapon;
-            CurrentArmor = currentArmor;
-            MaximumStageReached = maximumStageReached;
-         }
+        public Weapon Weapon { get; set; }
+        public Armor Armor { get; set; }
 
         /// <summary>
         /// EF constructor
@@ -37,7 +23,7 @@
             var rand = new Random();
             double damageMultiplicator = (rand.NextDouble() * 2) + (this.Luck * 0.1);
 
-            return Convert.ToInt32((this.Damage + CurrentWeapon.GivenDamage + bonusDamage) * damageMultiplicator);
+            return Convert.ToInt32((this.Damage + Weapon.GivenDamage + bonusDamage) * damageMultiplicator);
         }
 
         public int getLevelFromXp()

@@ -1,18 +1,12 @@
-﻿namespace ClassLibrary
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ClassLibrary
 {
     public class Shop
     {
-        private int _id { get; set; }
-        private List<Item> _itemList;
-
-        public int Id { get { return _id; } set { _id = value; } }
-        public List<Item> ItemList { get => _itemList; set => _itemList = value; }
-
-        public Shop(int id, List<Item> itemList)
-        {
-            Id = id;
-            ItemList = itemList;
-        }
+        [Key]
+        public int Id { get; private set; }
+        public List<Item> ItemList { get; set; }
 
         /// <summary>
         /// EF constructor
@@ -27,11 +21,11 @@
             if((Weapon)boughtItem != null)
             {
                 Weapon weapon = (Weapon)boughtItem;
-                player.CurrentWeapon = weapon;
+                player.Weapon = weapon;
             } else
             {
                 Armor armor = (Armor)boughtItem;
-                player.CurrentArmor = armor;
+                player.Armor = armor;
             }
 
             player.TotalGold -= boughtItem.Price;

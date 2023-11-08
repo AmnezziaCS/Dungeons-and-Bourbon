@@ -1,5 +1,4 @@
-﻿using ClassLibrary;
-using Dungeons_and_Bourbon;
+﻿using Dungeons_and_Bourbon;
 
 namespace Dungeon_Bourbon
 {
@@ -7,7 +6,7 @@ namespace Dungeon_Bourbon
     {
         static void Main(string[] args)
         {
-            contextHelper.initializeContext();
+            ContextHelper.initializeContext();
 
             bool isOn = true;
             string startTitleASCIIString = getASCIIArt("StartMenu");

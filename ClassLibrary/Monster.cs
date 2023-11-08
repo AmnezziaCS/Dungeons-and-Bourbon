@@ -1,10 +1,10 @@
-﻿namespace ClassLibrary
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ClassLibrary
 {
     public class Monster: Entity, IAttack
     {
-        public Monster(int damage, int health, int speed, int luck, string name, int id): base(id, damage, health, speed, luck, name)
-        {
-        }
+        public List<Stage> Stages { get; set; } = new();
 
         /// <summary>
         /// EF constructor

@@ -17,10 +17,10 @@
         public Combat(Player player, Stage stage)
         {
             Status = "ongoing";
-            CurrentPlayerHealth = player.Health + player.CurrentArmor.GivenHealth;
+            CurrentPlayerHealth = player.Health + player.Armor.GivenHealth;
             Stage = stage;
             Player = player;
-            RemainingMonstersList = new List<Monster>(stage.MonsterArray);
+            RemainingMonstersList = stage.MonsterList;
         }
 
         public void NextTurn()
@@ -74,8 +74,8 @@
                 if (RemainingMonstersList.Count == 0)
                 {
                     Status = "victory";
-                    Console.WriteLine($"Tout les monstres du stage {Stage.StageName} ont été vaincus, vous gagnez {Stage.RewardedXP}XP et ${Stage.RewardedGold} !");
-                    if (Player.MaximumStageReached <= Stage.StageId)
+                    Console.WriteLine($"Tout les monstres du stage {Stage.Name} ont été vaincus, vous gagnez {Stage.RewardedXP}XP et ${Stage.RewardedGold} !");
+                    if (Player.MaximumStageReached <= Stage.Id)
                     {
                         Console.WriteLine("Le stage suivant a été débloqué !");
                     }

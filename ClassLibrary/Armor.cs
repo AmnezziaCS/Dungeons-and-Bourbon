@@ -2,14 +2,7 @@
 {
     public class Armor: Item, IReturnItemAsString
     {
-        private int _givenHealth;
-
-        public int GivenHealth { get => _givenHealth; set => _givenHealth = value; }
-
-        public Armor(int givenHealth, string name, int price, int id) : base(id, name, price)
-        {
-            GivenHealth = givenHealth;
-        }
+        public int GivenHealth { get; set; }
 
         /// <summary>
         /// EF constructor
