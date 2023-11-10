@@ -18,17 +18,16 @@ namespace Dungeons_and_Bourbon
             Console.ReadKey();
         }
 
-        public static void renderAvailableStages(GameContext db, Player mainPlayer)
+        public static void renderAvailableStages(Player mainPlayer, List<Stage> stages)
         {
-            var stages = db.Stages.ToList();
-
             stages.ForEach(stage =>
             {
                 if (mainPlayer.MaximumStageReached >= stage.Id)
                 {
-                    Console.WriteLine($"\n{stage.Id}: {stage.Name}");
+                    Console.WriteLine($"\n{stage.Id} - {stage.Name}");
                 }
             });
+            Console.WriteLine("\n0 - Retour vers l'entrée du village");
         }
     }
 }

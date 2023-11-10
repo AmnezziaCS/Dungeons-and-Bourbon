@@ -2,17 +2,12 @@
 {
     public class Combat
     {
-        private string _status;
-        private Player _player;
-        private Stage _stage;
-        private int _currentPlayerHealth;
-        private List<Monster> _remainingMonstersList;
-
-        public string Status { get => _status; set => _status = value; }
-        public int CurrentPlayerHealth { get => _currentPlayerHealth; set => _currentPlayerHealth = value; }
-        public Player Player { get => _player; set => _player = value; }
-        public Stage Stage { get => _stage; set => _stage = value; }
-        public List<Monster> RemainingMonstersList { get => _remainingMonstersList; set => _remainingMonstersList = value; }
+        public string Status { get; set; }
+        public Player Player { get; set; }
+        public Stage Stage { get; set; }
+        public int CurrentPlayerHealth { get; set; }
+        public int CurrentMonsterIndex { get; set; }
+        public int CurrentMonsterHealth { get; set; }
 
         public Combat(Player player, Stage stage)
         {
@@ -20,12 +15,13 @@
             CurrentPlayerHealth = player.Health + player.Armor.GivenHealth;
             Stage = stage;
             Player = player;
-            RemainingMonstersList = stage.MonsterList;
+            CurrentMonsterIndex = 0;
+            CurrentMonsterHealth = Stage.MonsterList[CurrentMonsterIndex].Health;
         }
 
         public void NextTurn()
         {
-            Monster currentMonster = RemainingMonstersList[0];
+            Monster currentMonster = Stage.MonsterList[CurrentMonsterIndex];
             char playerPick;
             do
             {
@@ -41,8 +37,8 @@
                 int monsterAttack = currentMonster.attack();
                 if (isPlayerFaster)
                 {
-                    currentMonster.Health -= playerAttack;
-                    Console.WriteLine($"{currentMonster.Name} a {currentMonster.Health} points de vie");
+                    CurrentMonsterHealth -= playerAttack;
+                    Console.WriteLine($"{currentMonster.Name} a {CurrentMonsterHealth} points de vie");
                     if (checkIfTurnHasEndedEarly(currentMonster))
                     {
                         return;
@@ -57,8 +53,8 @@
                     {
                         return;
                     }
-                    currentMonster.Health -= playerAttack;
-                    Console.WriteLine($"{currentMonster.Name} a {currentMonster.Health} points de vie");
+                    CurrentMonsterHealth -= playerAttack;
+                    Console.WriteLine($"{currentMonster.Name} a {CurrentMonsterHealth} points de vie");
                 }
 
                 bool placeHolder = checkIfTurnHasEndedEarly(currentMonster);
@@ -67,11 +63,11 @@
 
         private bool checkIfTurnHasEndedEarly(Monster currentMonster)
         {
-            if (currentMonster.Health <= 0)
+            if (CurrentMonsterHealth <= 0)
             {
-                RemainingMonstersList.Remove(currentMonster);
+                CurrentMonsterIndex++;
                 Console.WriteLine($"{currentMonster.Name} a été vaincu");
-                if (RemainingMonstersList.Count == 0)
+                if (CurrentMonsterIndex >= Stage.MonsterList.Count)
                 {
                     Status = "victory";
                     Console.WriteLine($"Tout les monstres du stage {Stage.Name} ont été vaincus, vous gagnez {Stage.RewardedXP}XP et ${Stage.RewardedGold} !");
@@ -79,7 +75,9 @@
                     {
                         Console.WriteLine("Le stage suivant a été débloqué !");
                     }
+                    return true;
                 }
+                CurrentMonsterHealth = Stage.MonsterList[CurrentMonsterIndex].Health;
                 return true;
             }
             if (CurrentPlayerHealth <= 0)

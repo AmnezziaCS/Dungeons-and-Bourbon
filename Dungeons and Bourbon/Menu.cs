@@ -9,6 +9,7 @@ namespace Dungeons_and_Bourbon
         {
             bool isOn = true;
             Player mainPlayer = db.Players.Include(player => player.Weapon).Include(player => player.Armor).First();
+            List<Stage> stages = db.Stages.Include(stage => stage.MonsterList).ToList();
 
             string startTitleASCIIString = Utils.getASCIIArt("StartMenu");
             string menuASCIIString = Utils.getASCIIArt("Menu");
@@ -33,16 +34,17 @@ namespace Dungeons_and_Bourbon
                 switch (userGlobalMenuPick)
                 {
                     case 1:
-                        Console.Clear();
-                        Console.WriteLine("Vers quelle contrée voulez-vous voyager ?");
-                        Utils.renderAvailableStages(db, mainPlayer);
-                        Console.ReadKey();
+                        bool inStageSelection = true;
+                        do
+                        {
+                            inStageSelection = MainProcesses.inStageSelectionProcess(db, mainPlayer, stages);
+                        } while (inStageSelection);
                         break;
                     case 2:
                         bool inBuilding = true;
                         do
                         {
-                            inBuilding = MainProccesses.inBuildingProcess(db);
+                            inBuilding = MainProcesses.inBuildingProcess(db, mainPlayer);
                         } while (inBuilding);
                         break;
                     case 3:
