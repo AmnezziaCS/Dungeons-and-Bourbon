@@ -1,4 +1,6 @@
-﻿using Dungeons_and_Bourbon;
+﻿using ClassLibrary;
+using Dungeons_and_Bourbon;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dungeon_Bourbon
 {
@@ -7,6 +9,19 @@ namespace Dungeon_Bourbon
         static void Main(string[] args)
         {
             ContextHelper.initializeContext();
+
+            using (var db = new GameContext())
+            {
+                Player player = db.Players.Include(player => player.Weapon).Include(player => player.Armor).First();
+                Combat caca = new Combat(player, db.Stages.Include(stage => stage.MonsterList).First());
+
+                do
+                {
+                    caca.NextTurn();
+                } while (caca.Status == "ongoing");
+            }
+
+            return;
 
             bool isOn = true;
             string startTitleASCIIString = getASCIIArt("StartMenu");
