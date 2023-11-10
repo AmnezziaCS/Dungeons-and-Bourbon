@@ -31,7 +31,7 @@
                     Console.Clear();
                     Console.WriteLine(innASCIIString);
                     Console.WriteLine("\nVous entrez dans l'auberge de la flûte étincellante...\nAprès quelques pintes, vous avez comme l'impression que le monde à changé.\nOn dirait bien que votre progression a été sauvegardée!");
-                    Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
+                    Console.WriteLine("\n[Appuyez sur Entrée pour continuer...]");
                     db.SaveChanges();
                     Console.ReadKey();
                     break;
