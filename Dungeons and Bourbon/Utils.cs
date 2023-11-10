@@ -1,4 +1,6 @@
-﻿namespace Dungeons_and_Bourbon
+﻿using ClassLibrary;
+
+namespace Dungeons_and_Bourbon
 {
     public class Utils
     {
@@ -14,6 +16,19 @@
             Console.WriteLine("T'es trop bourré pour marcher droit ou quoi ??");
             Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
             Console.ReadKey();
+        }
+
+        public static void renderAvailableStages(GameContext db, Player mainPlayer)
+        {
+            var stages = db.Stages.ToList();
+
+            stages.ForEach(stage =>
+            {
+                if (mainPlayer.MaximumStageReached >= stage.Id)
+                {
+                    Console.WriteLine($"\n{stage.Id}: {stage.Name}");
+                }
+            });
         }
     }
 }

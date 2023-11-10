@@ -30,7 +30,9 @@ namespace Dungeons_and_Bourbon
                     db.Monsters.Add(drunkBarGuy);
 
                     var firstStageMonsterArray = new List<Monster>() { barGuy, drunkBarGuy };
-                    db.Stages.Add(new Stage { Name = "Taverne", RewardedGold = 1, RewardedXP = 1, MonsterList = firstStageMonsterArray });
+                    db.Stages.Add(new Stage { Name = "Taverne |", RewardedGold = 1, RewardedXP = 1, MonsterList = firstStageMonsterArray });
+                    db.Stages.Add(new Stage { Name = "Taverne ||", RewardedGold = 1, RewardedXP = 1, MonsterList = firstStageMonsterArray });
+                    db.Stages.Add(new Stage { Name = "Taverne |||", RewardedGold = 1, RewardedXP = 1, MonsterList = firstStageMonsterArray });
                 }
 
                 if (db.Players.Any() == false)

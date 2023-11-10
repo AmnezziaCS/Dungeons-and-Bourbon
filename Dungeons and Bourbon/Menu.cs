@@ -1,4 +1,5 @@
-using Dungeons_and_Bourbon;
+using ClassLibrary;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dungeons_and_Bourbon
 {
@@ -7,10 +8,11 @@ namespace Dungeons_and_Bourbon
         public static void renderMenu(GameContext db)
         {
             bool isOn = true;
+            Player mainPlayer = db.Players.Include(player => player.Weapon).Include(player => player.Armor).First();
 
             string startTitleASCIIString = Utils.getASCIIArt("StartMenu");
-            string endTitleASCIIString = Utils.getASCIIArt("ExitMenu");
             string menuASCIIString = Utils.getASCIIArt("Menu");
+            string endTitleASCIIString = Utils.getASCIIArt("ExitMenu");
 
             Console.WriteLine(startTitleASCIIString);
             Console.ReadKey();
@@ -32,7 +34,8 @@ namespace Dungeons_and_Bourbon
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Vers quelle contrée voulez-vous voyager ?"); // Will do
+                        Console.WriteLine("Vers quelle contrée voulez-vous voyager ?");
+                        Utils.renderAvailableStages(db, mainPlayer);
                         Console.ReadKey();
                         break;
                     case 2:
