@@ -21,7 +21,7 @@ namespace Dungeons_and_Bourbon
             {
                 Console.Clear();
                 Console.WriteLine(menuASCIIString);
-                Console.Write("\nMenu : \n\n1 - Voyager\n\n2 - Aller au centre-ville\n\n3 - Voir mon équipement\n\n4 - Quitter\n");
+                Console.Write("\nMenu : \n\n1 - Voyager\n\n2 - Aller au centre-ville\n\n3 - Voir mon Ã©quipement\n\n4 - Quitter\n");
                 string userGlobalMenuPickStringified = Console.ReadLine();
                 int userGlobalMenuPick;
 
@@ -49,8 +49,10 @@ namespace Dungeons_and_Bourbon
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Voir mon équipement :"); // Will do
-                        Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
+                        Console.WriteLine("Voici votre Ã©quipement :\n");
+                        Console.WriteLine($"{mainPlayer.Weapon.returnItemAsString()}");
+                        Console.WriteLine($"{mainPlayer.Armor.returnItemAsString()}\n");
+                        Console.WriteLine("[Appuyez sur EntrÃ©e pour continuer...]");
                         Console.ReadKey();
                         break;
                     case 4:
