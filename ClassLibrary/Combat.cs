@@ -72,7 +72,16 @@
                 {
                     Status = "victory";
                     Console.Clear();
-                    Console.WriteLine($"Tout les monstres du stage {Stage.Name} ont été vaincus, vous gagnez {Stage.RewardedXP}XP et ${Stage.RewardedGold} !");
+                    Console.WriteLine(@"
+|\     /|(  ___  )|\     /|        |\     /|\__   __/( (    /|
+( \   / )| (   ) || )   ( |        | )   ( |   ) (   |  \  ( |
+ \ (_) / | |   | || |   | |        | | _ | |   | |   |   \ | |
+  \   /  | |   | || |   | |        | |( )| |   | |   | (\ \) |
+   ) (   | |   | || |   | |        | || || |   | |   | | \   |
+   | |   | (___) || (___) |        | () () |___) (___| )  \  |
+   \_/   (_______)(_______)        (_______)\_______/|/    )_)
+");
+                    Console.WriteLine($"\nTout les monstres du stage {Stage.Name} ont été vaincus, vous gagnez {Stage.RewardedXP}XP et ${Stage.RewardedGold} !");
                     if (Player.MaximumStageReached == Stage.Id && Stage.Id != 15)
                     {
                         Console.WriteLine("Le stage suivant a été débloqué !");
@@ -86,7 +95,17 @@
             {
                 Status = "defeat";
                 Console.Clear();
-                Console.WriteLine("Vous avez été vaincu");
+                Console.WriteLine(@"
+          _______                   _        _______  _______  _______ 
+|\     /|(  ___  )|\     /|        ( \      (  ___  )(  ____ \(  ____ \
+( \   / )| (   ) || )   ( |        | (      | (   ) || (    \/| (    \/
+ \ (_) / | |   | || |   | |        | |      | |   | || (_____ | (__    
+  \   /  | |   | || |   | |        | |      | |   | |(_____  )|  __)   
+   ) (   | |   | || |   | |        | |      | |   | |      ) || (      
+   | |   | (___) || (___) |        | (____/\| (___) |/\____) || (____/\
+   \_/   (_______)(_______)        (_______/(_______)\_______)(_______/
+                                                                       
+                    ");
                 return true;
             }
             return false;
