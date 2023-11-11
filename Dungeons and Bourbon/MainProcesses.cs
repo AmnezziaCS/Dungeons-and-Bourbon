@@ -74,7 +74,7 @@ namespace Dungeons_and_Bourbon
                         Combat combat = new Combat(mainPlayer, selectedStage);
                         do
                         {
-                            combat.NextTurn();
+                            combat.nextTurn();
                         } while (combat.Status == "ongoing");
 
                         if (combat.Status != "defeat")
