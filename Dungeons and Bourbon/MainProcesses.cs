@@ -134,8 +134,10 @@ namespace Dungeons_and_Bourbon
                                 mainPlayer.MaximumStageReached += 1;
                             }
                             // Update Player level
+                            mainPlayer.updateStats();
                             db.Players.Update(mainPlayer);
                         }
+                        Console.WriteLine("\n[Appuyez sur Entrée pour continuer...]");
                         Console.ReadLine();
                         return false;
                     }

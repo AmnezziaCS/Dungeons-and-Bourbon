@@ -2,15 +2,16 @@
 
 A CMD C# written RPG game where you will fight you way up to gain the most prestigious whisky bottles in the world !
 
-## What is left to do
+## Work left
 
 - [x] Stage picker and combat handling in app
 - [x] Shop (Buy and make sure items are saved)
 - [x] Tavern (save)
-- [ ] Level check and level up after combats
+- [x] Level check and level up after combats
 - [x] One time use items
-- [ ] All default values
-- [ ] Normalize go back to previous page with 0 as select
+- [ ] Setup all initial values
+- [ ] Normalize "go back to previous page" number with 0
+- [ ] Make it so choosing a menu doesn't require you to press enter after number / Make a space between text and pick
 - [ ] Proper documentation in the readme
 
 ## Docoumentation

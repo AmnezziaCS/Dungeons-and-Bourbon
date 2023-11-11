@@ -12,7 +12,7 @@
 
         new public string returnItemAsString()
         {
-            return $"[{Name}] - ${Price} : +{GivenDamage} passive damage in combat";
+            return $"[{this.Name}] - ${this.Price} : +{this.GivenDamage} passive damage in combat";
         }
     }
 }

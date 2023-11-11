@@ -17,7 +17,7 @@ namespace ClassLibrary
 
         public string returnItemAsString()
         {
-            return "-";
+            return "";
         }
     }
 }

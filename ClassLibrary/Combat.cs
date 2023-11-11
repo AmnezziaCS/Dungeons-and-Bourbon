@@ -13,102 +13,115 @@
         
         public Combat(Player player, Stage stage)
         {
-            Status = "ongoing";
-            CurrentPlayerHealth = player.Health + player.Armor.GivenHealth;
-            Stage = stage;
-            Player = player;
-            CurrentPlayerDamageBuff = 0;
-            CurrentPlayerHealthBuff = 0;
-            CurrentMonsterIndex = 0;
-            CurrentMonsterHealth = Stage.MonsterList[CurrentMonsterIndex].Health;
+            this.Status = "ongoing";
+            this.Stage = stage;
+            this.Player = player;
+
+            this.CurrentPlayerHealth = player.Health + player.Armor.GivenHealth;
+            this.CurrentPlayerDamageBuff = 0;
+            this.CurrentPlayerHealthBuff = 0;
+
+            this.CurrentMonsterIndex = 0;
+            this.CurrentMonsterHealth = stage.MonsterList[CurrentMonsterIndex].Health;
         }
 
         public void nextTurn()
         {
             Monster currentMonster = Stage.MonsterList[CurrentMonsterIndex];
-            string consumableNameBuffer = Player.ConsumableStatUpItem != null ? Player.ConsumableStatUpItem.Name : "Aucun conssomable possédé pour le moment"; 
+            string consumableNameBuffer = Player.ConsumableStatUpItem != null ? Player.ConsumableStatUpItem.Name : "Aucun conssomable possédé pour le moment";
+            
             char playerPick;
             do
             {
-                Console.WriteLine($" \n-- Buffs en cours [Vie: {CurrentPlayerHealthBuff} / Dégats: {CurrentPlayerDamageBuff}] --\n\nMenu de combat :\n - (a) pour attaquer\n - (i) pour utiliser votre item consommable ({consumableNameBuffer})");
+                Console.WriteLine($" \n-- Buffs en cours [Vie: {this.CurrentPlayerHealthBuff} / Dégats: {this.CurrentPlayerDamageBuff}] --\n\nMenu de combat :\n - (a) pour attaquer\n - (i) pour utiliser votre item consommable ({consumableNameBuffer})");
                 playerPick = Console.ReadKey().KeyChar;
             } while (playerPick != 'a' && playerPick != 'i');
 
             if (playerPick == 'a')
             {
                 Console.Clear();
-                bool isPlayerFaster = Player.Speed >= currentMonster.Speed;
-                int playerAttack = Player.attack(CurrentPlayerDamageBuff);
+                bool isPlayerFaster = this.Player.Speed >= currentMonster.Speed;
+                int playerAttack = this.Player.attack(this.CurrentPlayerDamageBuff);
                 int monsterAttack = currentMonster.attack();
                 if (isPlayerFaster)
                 {
                     CurrentMonsterHealth -= playerAttack;
-                    displayHealthBar(currentMonster.Name, Stage.MonsterList[CurrentMonsterIndex].Health, CurrentMonsterHealth);
+                    displayHealthBar(currentMonster.Name, this.Stage.MonsterList[CurrentMonsterIndex].Health, this.CurrentMonsterHealth);
                     if (checkIfTurnHasEndedEarly(currentMonster))
                     {
                         return;
                     }
-                    CurrentPlayerHealth -= monsterAttack;
-                    displayHealthBar("Joueur", Player.Health + Player.Armor.GivenHealth , CurrentPlayerHealth);
+                    this.CurrentPlayerHealth -= monsterAttack;
+                    displayHealthBar("Joueur", this.Player.Health + this.Player.Armor.GivenHealth , this.CurrentPlayerHealth);
                 } else
                 {
-                    CurrentPlayerHealth -= monsterAttack;
-                    displayHealthBar("Joueur", Player.Health + Player.Armor.GivenHealth, CurrentPlayerHealth);
+                    this.CurrentPlayerHealth -= monsterAttack;
+                    displayHealthBar("Joueur", this.Player.Health + this.Player.Armor.GivenHealth, this.CurrentPlayerHealth);
                     if (checkIfTurnHasEndedEarly(currentMonster))
                     {
                         return;
                     }
-                    CurrentMonsterHealth -= playerAttack;
-                    displayHealthBar(currentMonster.Name, Stage.MonsterList[CurrentMonsterIndex].Health, CurrentMonsterHealth);
+                    this.CurrentMonsterHealth -= playerAttack;
+                    displayHealthBar(currentMonster.Name, this.Stage.MonsterList[CurrentMonsterIndex].Health, this.CurrentMonsterHealth);
                 }
 
                 bool placeHolder = checkIfTurnHasEndedEarly(currentMonster);
             }
+
             if (playerPick == 'i')
             {
                 Console.Clear();
-                CurrentPlayerHealth += Player.ConsumableStatUpItem.GivenHealth;
-                CurrentPlayerHealthBuff += Player.ConsumableStatUpItem.GivenHealth;
-                CurrentPlayerDamageBuff = Player.ConsumableStatUpItem.GivenDamage;
-                Player.ConsumableStatUpItem = null;
+                this.CurrentPlayerHealth += this.Player.ConsumableStatUpItem.GivenHealth;
+                this.CurrentPlayerHealthBuff += this.Player.ConsumableStatUpItem.GivenHealth;
+                this.CurrentPlayerDamageBuff = this.Player.ConsumableStatUpItem.GivenDamage;
+                this.Player.ConsumableStatUpItem = null;
             }
         }
 
         private bool checkIfTurnHasEndedEarly(Monster currentMonster)
         {
-            if (CurrentMonsterHealth <= 0)
+            if (this.CurrentMonsterHealth <= 0)
             {
-                CurrentMonsterIndex++;
+                this.CurrentMonsterIndex++;
                 Console.Clear();
                 Console.WriteLine($"{currentMonster.Name} a été vaincu");
-                if (CurrentMonsterIndex >= Stage.MonsterList.Count)
+                if (this.CurrentMonsterIndex >= this.Stage.MonsterList.Count)
                 {
-                    Status = "victory";
+                    this.Status = "victory";
                     Console.Clear();
-                    Console.WriteLine(@"
-|\     /|(  ___  )|\     /|        |\     /|\__   __/( (    /|
-( \   / )| (   ) || )   ( |        | )   ( |   ) (   |  \  ( |
- \ (_) / | |   | || |   | |        | | _ | |   | |   |   \ | |
-  \   /  | |   | || |   | |        | |( )| |   | |   | (\ \) |
-   ) (   | |   | || |   | |        | || || |   | |   | | \   |
-   | |   | (___) || (___) |        | () () |___) (___| )  \  |
-   \_/   (_______)(_______)        (_______)\_______/|/    )_)
-");
-                    Console.WriteLine($"\nTout les monstres du stage {Stage.Name} ont été vaincus, vous gagnez {Stage.RewardedXP}XP et ${Stage.RewardedGold} !");
-                    if (Player.MaximumStageReached == Stage.Id && Stage.Id != 15)
+                    Console.WriteLine(victoryASCIIString);
+                    Console.WriteLine($"\nTous les monstres du stage {this.Stage.Name} ont été vaincus, vous gagnez {this.Stage.RewardedXP}XP et ${this.Stage.RewardedGold} !");
+                    if (this.Player.MaximumStageReached == this.Stage.Id && this.Stage.Id != 15)
                     {
-                        Console.WriteLine("Le stage suivant a été débloqué !");
+                        Console.WriteLine("\nLe stage suivant a été débloqué !");
                     }
                     return true;
                 }
-                CurrentMonsterHealth = Stage.MonsterList[CurrentMonsterIndex].Health;
+                this.CurrentMonsterHealth = this.Stage.MonsterList[this.CurrentMonsterIndex].Health;
                 return true;
             }
-            if (CurrentPlayerHealth <= 0)
+            if (this.CurrentPlayerHealth <= 0)
             {
-                Status = "defeat";
+                this.Status = "defeat";
                 Console.Clear();
-                Console.WriteLine(@"
+                Console.WriteLine(defeatASCIIString);
+                return true;
+            }
+            return false;
+        }
+
+        private void displayHealthBar(string entityName, int initialHealth, int currentHealth)
+        {
+            // Calculer le pourcentage de vie restante
+            double healthPercent = Math.Max(0, (double)currentHealth / initialHealth * 100);
+
+            // Afficher la barre de vie
+            Console.WriteLine($"\nEntité : {entityName}");
+            Console.WriteLine($"Vie : {currentHealth} / {initialHealth}");
+            Console.WriteLine("Barre de vie : [" + new string('#', (int)healthPercent / 5) + new string('-', 20 - (int)healthPercent / 5) + "]");
+        }
+
+        public string defeatASCIIString = @"
           _______                   _        _______  _______  _______ 
 |\     /|(  ___  )|\     /|        ( \      (  ___  )(  ____ \(  ____ \
 ( \   / )| (   ) || )   ( |        | (      | (   ) || (    \/| (    \/
@@ -117,22 +130,17 @@
    ) (   | |   | || |   | |        | |      | |   | |      ) || (      
    | |   | (___) || (___) |        | (____/\| (___) |/\____) || (____/\
    \_/   (_______)(_______)        (_______/(_______)\_______)(_______/
-                                                                       
-                    ");
-                return true;
-            }
-            return false;
-        }
+   
+   ";
 
-        private void displayHealthBar(string entitieName, int initialHealth, int currentHealth)
-        {
-            // Calculer le pourcentage de vie restante
-            double healthPercent = Math.Max(0, (double)currentHealth / initialHealth * 100);
-
-            // Afficher la barre de vie
-            Console.WriteLine($"\nEntité : {entitieName}");
-            Console.WriteLine($"Vie : {currentHealth} / {initialHealth}");
-            Console.WriteLine("Barre de vie : [" + new string('#', (int)healthPercent / 5) + new string('-', 20 - (int)healthPercent / 5) + "]");
-        }
+        public string victoryASCIIString = @"
+|\     /|(  ___  )|\     /|        |\     /|\__   __/( (    /|
+( \   / )| (   ) || )   ( |        | )   ( |   ) (   |  \  ( |
+ \ (_) / | |   | || |   | |        | | _ | |   | |   |   \ | |
+  \   /  | |   | || |   | |        | |( )| |   | |   | (\ \) |
+   ) (   | |   | || |   | |        | || || |   | |   | | \   |
+   | |   | (___) || (___) |        | () () |___) (___| )  \  |
+   \_/   (_______)(_______)        (_______)\_______/|/    )_)
+";
     }
 }
