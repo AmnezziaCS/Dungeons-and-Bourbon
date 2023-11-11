@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    public class Armor: Item, IReturnItemAsString
+    public class Armor: Item
     {
         public int GivenHealth { get; set; }
 
@@ -10,7 +10,7 @@
         public Armor(): base()
         { }
 
-        public string returnItemAsString()
+        new public string returnItemAsString()
         {
             return $"[{Name}] - ${Price} : +{GivenHealth} passive health in combat";
         }

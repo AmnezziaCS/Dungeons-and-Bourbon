@@ -13,12 +13,38 @@ namespace Dungeons_and_Bourbon
 
                 if (db.Weapons.Any() == false)
                 {
+                    Weapon sword = new Weapon { Name = "Epée", Price = 10, GivenDamage = 2 };
+                    Weapon axe = new Weapon { Name = "Hache", Price = 15, GivenDamage = 3 };
+                    Weapon mace = new Weapon { Name = "Masse", Price = 20, GivenDamage = 4 };
                     db.Weapons.Add(baseWeapon);
+                    db.Weapons.Add(sword);
+                    db.Weapons.Add(axe);
+                    db.Weapons.Add(mace);
                 }
 
                 if (db.Armors.Any() == false)
                 {
+                    Armor leatherArmor = new Armor { Name = "Armure en cuir", Price = 10, GivenHealth = 2 };
+                    Armor chainMail = new Armor { Name = "Armure en maille", Price = 15, GivenHealth = 3 };
+                    Armor plateArmor = new Armor { Name = "Armure en plaque", Price = 20, GivenHealth = 4 };
                     db.Armors.Add(baseArmor);
+                    db.Armors.Add(leatherArmor);
+                    db.Armors.Add(chainMail);
+                    db.Armors.Add(plateArmor);
+                }
+
+                db.SaveChanges();
+
+                if (db.Shops.Any() == false)
+                {
+                    var weaponList = db.Weapons.ToList();
+                    var armorList = db.Armors.ToList();
+
+                    List<Item> itemList = new List<Item>();
+                    itemList.AddRange(weaponList);
+                    itemList.AddRange(armorList);
+
+                    db.Shops.Add(new Shop { ItemList = itemList });
                 }
 
                 if (db.Monsters.Any() == false)

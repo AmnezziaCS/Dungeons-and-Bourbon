@@ -2,7 +2,7 @@
 
 namespace ClassLibrary
 {
-    public class Item
+    public class Item: IReturnItemAsString
     {
         [Key]
         public int Id { get; private set; }
@@ -14,5 +14,10 @@ namespace ClassLibrary
         /// </summary>
         public Item()
         { }
+
+        public string returnItemAsString()
+        {
+            return "-";
+        }
     }
 }
