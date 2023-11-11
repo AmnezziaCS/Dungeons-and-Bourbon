@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary
 {
-    public class Weapon: Item, IReturnItemAsString
+    public class Weapon: Item
     {
         public int GivenDamage { get; set; }
 
@@ -10,7 +10,7 @@
         public Weapon() : base()
         { }
 
-        public string returnItemAsString()
+        new public string returnItemAsString()
         {
             return $"[{Name}] - ${Price} : +{GivenDamage} passive damage in combat";
         }
