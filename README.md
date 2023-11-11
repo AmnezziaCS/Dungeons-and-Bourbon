@@ -5,7 +5,7 @@ A CMD C# written RPG game where you will fight you way up to gain the most prest
 ## What is left to do
 
 - [x] Stage picker and combat handling in app
-- [ ] Shop (Buy and make sure items are saved)
+- [x] Shop (Buy and make sure items are saved)
 - [x] Tavern (save)
 - [ ] All default values
 - [ ] One time use items
