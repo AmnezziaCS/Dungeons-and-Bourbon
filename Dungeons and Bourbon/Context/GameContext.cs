@@ -17,6 +17,7 @@ public class GameContext : DbContext
 
     public DbSet<Armor> Armors { get; set; }
     public DbSet<Weapon> Weapons { get; set; }
+    public DbSet<ConsumableStatUpItem> ConsumableStatUpItems { get; set; }
     public DbSet<Shop> Shops { get; set; }
     public DbSet<Monster> Monsters { get; set; }
     public DbSet<Stage> Stages { get; set; }

@@ -6,15 +6,19 @@
         public Player Player { get; set; }
         public Stage Stage { get; set; }
         public int CurrentPlayerHealth { get; set; }
+        public int CurrentPlayerDamageBuff { get; set; }
+        public int CurrentPlayerHealthBuff { get; set; }
         public int CurrentMonsterIndex { get; set; }
         public int CurrentMonsterHealth { get; set; }
-
+        
         public Combat(Player player, Stage stage)
         {
             Status = "ongoing";
             CurrentPlayerHealth = player.Health + player.Armor.GivenHealth;
             Stage = stage;
             Player = player;
+            CurrentPlayerDamageBuff = 0;
+            CurrentPlayerHealthBuff = 0;
             CurrentMonsterIndex = 0;
             CurrentMonsterHealth = Stage.MonsterList[CurrentMonsterIndex].Health;
         }
@@ -22,18 +26,19 @@
         public void nextTurn()
         {
             Monster currentMonster = Stage.MonsterList[CurrentMonsterIndex];
+            string consumableNameBuffer = Player.ConsumableStatUpItem != null ? Player.ConsumableStatUpItem.Name : "Aucun conssomable possédé pour le moment"; 
             char playerPick;
             do
             {
-                Console.WriteLine("\n(a) pour attaquer");
+                Console.WriteLine($" \n-- Buffs en cours [Vie: {CurrentPlayerHealthBuff} / Dégats: {CurrentPlayerDamageBuff}] --\n\nMenu de combat :\n - (a) pour attaquer\n - (i) pour utiliser votre item consommable ({consumableNameBuffer})");
                 playerPick = Console.ReadKey().KeyChar;
-            } while (playerPick != 'a'); // Will change when consumable items are implemented
+            } while (playerPick != 'a' && playerPick != 'i');
 
             if (playerPick == 'a')
             {
                 Console.Clear();
                 bool isPlayerFaster = Player.Speed >= currentMonster.Speed;
-                int playerAttack = Player.attack(); // Will pass potential damage buff here when implemented
+                int playerAttack = Player.attack(CurrentPlayerDamageBuff);
                 int monsterAttack = currentMonster.attack();
                 if (isPlayerFaster)
                 {
@@ -58,6 +63,14 @@
                 }
 
                 bool placeHolder = checkIfTurnHasEndedEarly(currentMonster);
+            }
+            if (playerPick == 'i')
+            {
+                Console.Clear();
+                CurrentPlayerHealth += Player.ConsumableStatUpItem.GivenHealth;
+                CurrentPlayerHealthBuff += Player.ConsumableStatUpItem.GivenHealth;
+                CurrentPlayerDamageBuff = Player.ConsumableStatUpItem.GivenDamage;
+                Player.ConsumableStatUpItem = null;
             }
         }
 
