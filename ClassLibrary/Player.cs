@@ -11,6 +11,7 @@ namespace ClassLibrary
 
         public Weapon Weapon { get; set; }
         public Armor Armor { get; set; }
+        public ConsumableStatUpItem ConsumableStatUpItem { get; set; } = null;
 
         /// <summary>
         /// EF constructor

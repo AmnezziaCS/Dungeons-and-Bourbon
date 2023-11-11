@@ -80,7 +80,6 @@ namespace Dungeons_and_Bourbon
                         {
                             shop.buyItem(userShopMenuPick - 1, mainPlayer);
                             db.SaveChanges();
-                            Console.WriteLine("Vous avez acheté l'objet !");
                             Console.WriteLine("\n[Appuyez sur Entrée pour continuer...]");
                             Console.ReadKey();
                             return false;

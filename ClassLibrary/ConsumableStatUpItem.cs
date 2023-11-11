@@ -4,7 +4,10 @@
     {
         public int GivenDamage { get; set; }
         public int GivenHealth { get; set; }
-        public int GivenSpeed { get; set; }
-        public int GivenLuck { get; set; }
+
+        new public string returnItemAsString()
+        {
+            return $"[{Name}] - ${Price} : donne {GivenDamage} de dégâts et {GivenHealth} de vie";
+        }
     }
 }

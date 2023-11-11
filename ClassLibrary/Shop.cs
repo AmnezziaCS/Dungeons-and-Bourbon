@@ -23,10 +23,16 @@ namespace ClassLibrary
                 {
                     Weapon weapon = (Weapon)item;
                     Console.WriteLine($"{itemIndex} - {weapon.returnItemAsString()}");
-                } else
+                }
+                if (item is Armor) 
                 {
                     Armor armor = (Armor)item;
                     Console.WriteLine($"{itemIndex} - {armor.returnItemAsString()}");
+                }
+                if (item is ConsumableStatUpItem)
+                {
+                    ConsumableStatUpItem consumableStatUpItem = (ConsumableStatUpItem)item;
+                    Console.WriteLine($"{itemIndex} - {consumableStatUpItem.returnItemAsString()}");
                 }
                 itemIndex++;
             }
@@ -45,7 +51,9 @@ namespace ClassLibrary
                     return;
                 }
                 player.Weapon = weapon;
-            } else
+                this.ItemList.RemoveAt(itemIndex);
+            }
+            if (boughtItem is Armor)
             {
                 Armor armor = (Armor)boughtItem;
                 if (player.Armor.GivenHealth > armor.GivenHealth)
@@ -54,10 +62,21 @@ namespace ClassLibrary
                     return;
                 }
                 player.Armor = armor;
+                this.ItemList.RemoveAt(itemIndex);
+            }
+            if (boughtItem is ConsumableStatUpItem)
+            {
+                ConsumableStatUpItem consumableStatUpItem = (ConsumableStatUpItem)boughtItem;
+                if (player.ConsumableStatUpItem != null)
+                {
+                    Console.WriteLine("Vous avez déjà un objet consommable !");
+                    return;
+                }
+                player.ConsumableStatUpItem = consumableStatUpItem;
             }
 
             player.TotalGold -= boughtItem.Price;
-            this.ItemList.RemoveAt(itemIndex);      
+            Console.WriteLine($"Vous avez acheté : {boughtItem.Name}!");
         }
     }
 }

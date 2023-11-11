@@ -8,7 +8,7 @@ namespace Dungeons_and_Bourbon
         public static void renderMenu(GameContext db)
         {
             bool isOn = true;
-            Player mainPlayer = db.Players.Include(player => player.Weapon).Include(player => player.Armor).First();
+            Player mainPlayer = db.Players.Include(player => player.Weapon).Include(player => player.Armor).Include(player => player.ConsumableStatUpItem).First();
             List<Stage> stages = db.Stages.Include(stage => stage.MonsterList).ToList();
 
             string startTitleASCIIString = Utils.getASCIIArt("StartMenu");
@@ -48,10 +48,12 @@ namespace Dungeons_and_Bourbon
                         } while (inBuilding);
                         break;
                     case 3:
+                        string consumableBuffer = mainPlayer.ConsumableStatUpItem != null ? mainPlayer.ConsumableStatUpItem.returnItemAsString() : "Vous n'avez pas d'objet consommable.";
                         Console.Clear();
                         Console.WriteLine("Voici votre équipement :\n");
                         Console.WriteLine($"{mainPlayer.Weapon.returnItemAsString()}");
-                        Console.WriteLine($"{mainPlayer.Armor.returnItemAsString()}\n");
+                        Console.WriteLine($"{mainPlayer.Armor.returnItemAsString()}");
+                        Console.WriteLine($"{consumableBuffer}\n");
                         Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
                         Console.ReadKey();
                         break;
