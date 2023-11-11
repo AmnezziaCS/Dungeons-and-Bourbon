@@ -7,7 +7,7 @@
 
         new public string returnItemAsString()
         {
-            return $"[{Name}] - ${Price} : donne {GivenDamage} de dégâts et {GivenHealth} de vie";
+            return $"[{this.Name}] - ${this.Price} : donne {this.GivenDamage} de dégâts et {this.GivenHealth} de vie";
         }
     }
 }
