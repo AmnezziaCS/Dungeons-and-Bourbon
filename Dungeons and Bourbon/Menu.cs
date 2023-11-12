@@ -21,7 +21,7 @@ namespace Dungeons_and_Bourbon
             {
                 Console.Clear();
                 Console.WriteLine(menuASCIIString);
-                Console.Write("\nMenu : \n\n1 - Voyager\n\n2 - Aller au centre-ville\n\n3 - Voir mon équipement\n\n4 - Quitter\n");
+                Console.Write("\nMenu : \n\n1 - Voyager\n\n2 - Aller au centre-ville\n\n3 - Voir mon équipement\n\n0 - Quitter\n\n");
                 string userGlobalMenuPickStringified = Console.ReadLine();
                 int userGlobalMenuPick;
 
@@ -33,6 +33,12 @@ namespace Dungeons_and_Bourbon
 
                 switch (userGlobalMenuPick)
                 {
+                    case 0:
+                        isOn = false;
+                        Console.Clear();
+                        Console.Write(endTitleASCIIString);
+                        Console.ReadKey();
+                        break;
                     case 1:
                         bool inStageSelection = true;
                         do
@@ -55,12 +61,6 @@ namespace Dungeons_and_Bourbon
                         Console.WriteLine($"{mainPlayer.Armor.returnItemAsString()}");
                         Console.WriteLine($"{consumableBuffer}\n");
                         Console.WriteLine("[Appuyez sur Entrée pour continuer...]");
-                        Console.ReadKey();
-                        break;
-                    case 4:
-                        isOn = false;
-                        Console.Clear();
-                        Console.Write(endTitleASCIIString);
                         Console.ReadKey();
                         break;
                     default:
