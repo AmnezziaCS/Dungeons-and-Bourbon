@@ -9,7 +9,7 @@ namespace Dungeons_and_Bourbon
         {
             string innASCIIString = Utils.getASCIIArt("Inn");
             Console.Clear();
-            Console.Write("Vous vous retrouvez face à deux bâtiments, dans lequel rentrez-vous :\n\n1 - Entrer dans le magasin\n\n2 - Entrer dans l'auberge de la flûte étincellante\n\n3 - Retour vers l'entrée du village\n");
+            Console.Write("Vous vous retrouvez face à deux bâtiments, dans lequel rentrez-vous :\n\n1 - Entrer dans le magasin\n\n2 - Entrer dans l'auberge de la flûte étincellante\n\n0 - Retour vers l'entrée du village\n");
 
             string userBuildingMenuPickStringified = Console.ReadLine();
             int userBuildingMenuPick;
@@ -22,6 +22,8 @@ namespace Dungeons_and_Bourbon
 
             switch (userBuildingMenuPick)
             {
+                case 0:
+                    return false;
                 case 1:
                     bool inShopProcess = true;
                     do
@@ -37,8 +39,6 @@ namespace Dungeons_and_Bourbon
                     db.SaveChanges();
                     Console.ReadKey();
                     break;
-                case 3:
-                    return false;
                 default:
                     Utils.userChoiceErrorMessage();
                     break;

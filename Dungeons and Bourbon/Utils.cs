@@ -27,7 +27,7 @@ namespace Dungeons_and_Bourbon
                     Console.WriteLine($"\n{stage.Id} - {stage.Name}");
                 }
             });
-            Console.WriteLine("\n0 - Retour vers l'entrée du village");
+            Console.WriteLine("\n0 - Retour vers l'entrée du village\n");
         }
     }
 }
