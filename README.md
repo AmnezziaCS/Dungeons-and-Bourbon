@@ -9,8 +9,8 @@ A CMD C# written RPG game where you will fight you way up to gain the most prest
 - [x] Tavern (save)
 - [x] Level check and level up after combats
 - [x] One time use items
-- [ ] Setup all initial values
-- [ ] Normalize "go back to previous page" number with 0
+- [x] Setup all initial values
+- [x] Normalize "go back to previous page" number with 0
 - [ ] Make it so choosing a menu doesn't require you to press enter after number / Make a space between text and pick
 - [ ] Proper documentation in the readme
 
