@@ -17,10 +17,20 @@ namespace Dungeons_and_Bourbon
                     Weapon sword = new Weapon { Name = "Epée", Price = 430, GivenDamage = 2 };
                     Weapon axe = new Weapon { Name = "Hache", Price = 500, GivenDamage = 3 };
                     Weapon mace = new Weapon { Name = "Masse", Price = 720, GivenDamage = 4 };
+                    Weapon bow = new Weapon { Name = "Arc", Price = 1000, GivenDamage = 5 };
+                    Weapon crossbow = new Weapon { Name = "Arbalète", Price = 1500, GivenDamage = 6 };
+                    Weapon dagger = new Weapon { Name = "Dague", Price = 2000, GivenDamage = 7 };
+                    Weapon spear = new Weapon { Name = "Lance", Price = 2500, GivenDamage = 8 };
+                    Weapon halberd = new Weapon { Name = "Hallebarde", Price = 3000, GivenDamage = 9 };
                     db.Weapons.Add(baseWeapon);
                     db.Weapons.Add(sword);
                     db.Weapons.Add(axe);
                     db.Weapons.Add(mace);
+                    db.Weapons.Add(bow);
+                    db.Weapons.Add(crossbow);
+                    db.Weapons.Add(dagger);
+                    db.Weapons.Add(spear);
+                    db.Weapons.Add(halberd);
                 }
 
                 if (db.Armors.Any() == false)
@@ -28,11 +38,19 @@ namespace Dungeons_and_Bourbon
                     Armor leatherArmor = new Armor { Name = "Armure en cuir", Price = 50, GivenHealth = 2 };
                     Armor chainMail = new Armor { Name = "Armure en maille", Price = 100, GivenHealth = 3 };
                     Armor plateArmor = new Armor { Name = "Armure en plaque", Price = 350, GivenHealth = 4 };
+                    Armor fullPlateArmor = new Armor { Name = "Armure en plaque complète", Price = 500, GivenHealth = 5 };
+                    Armor shield = new Armor { Name = "Bouclier", Price = 1000, GivenHealth = 6 };
+                    Armor magicArmor = new Armor { Name = "Armure magique", Price = 1500, GivenHealth = 7 };
+                    Armor magicShield = new Armor { Name = "Bouclier magique", Price = 2000, GivenHealth = 8 };
 
                     db.Armors.Add(baseArmor);
                     db.Armors.Add(leatherArmor);
                     db.Armors.Add(chainMail);
                     db.Armors.Add(plateArmor);
+                    db.Armors.Add(fullPlateArmor);
+                    db.Armors.Add(shield);
+                    db.Armors.Add(magicArmor);
+                    db.Armors.Add(magicShield);
                 }
 
                 if (db.ConsumableStatUpItems.Any() == false)
