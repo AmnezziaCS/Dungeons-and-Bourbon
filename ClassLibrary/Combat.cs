@@ -91,7 +91,7 @@
                     Console.Clear();
                     Console.WriteLine(victoryASCIIString);
                     Console.WriteLine($"\nTous les monstres du stage {this.Stage.Name} ont été vaincus, vous gagnez {this.Stage.RewardedXP}XP et ${this.Stage.RewardedGold} !");
-                    if (this.Player.MaximumStageReached == this.Stage.Id && this.Stage.Id != 15)
+                    if (this.Player.MaximumStageReached == this.Stage.Id && this.Stage.Id != 25)
                     {
                         Console.WriteLine("\nLe stage suivant a été débloqué !");
                     }

@@ -129,7 +129,7 @@ namespace Dungeons_and_Bourbon
                         {
                             mainPlayer.TotalGold += selectedStage.RewardedGold;
                             mainPlayer.TotalXp += selectedStage.RewardedXP;
-                            if (mainPlayer.MaximumStageReached == selectedStage.Id && selectedStage.Id != 15)
+                            if (mainPlayer.MaximumStageReached == selectedStage.Id && selectedStage.Id != 25)
                             {
                                 mainPlayer.MaximumStageReached += 1;
                             }
