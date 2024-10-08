@@ -1,24 +1,28 @@
 ﻿# Dungeons and Bourbon 🏰
 
-A CMD C# written RPG game where you will fight you way up to gain the most prestigious whisky bottles in the world !
+A CMD C# written RPG game where the player has to beat all stages to win.
 
-## How to play?
+## Available places
 
-The simple idea of this game is to beat all stages.
+### Shop 🛒
 
-### Item shop 🏪
-
-The shop is accessible in the menu, you can buy items that will boost your stats.
+The shop is the place where you can buy items to help you in your journey. You can buy weapons, armors and consumables.
 
 ### Inn 🍺
 
-The inn will allow you to save your progress upon enter.
+The inn will allow you to save your progress.
 
 ### Inventory 🛠️
 
 The inventory is the place where you can see your current equipped items.
 
-### Items
+### Stages 💀
+
+Stages are composed of multiple monsters. If you kill all of them without dying, you will be allowed to play the next one. You will also be awarded XP and Gold.
+
+Also note that you can play all the levels an infinite amount of times meaning you can farm them.
+
+## Items
 
 #### Weapons ⚔️
 
@@ -31,12 +35,6 @@ These items will give you more health when held.
 #### Consumables 🍾
 
 These items will give you more health and damage upon use. You can only use them once, afterwards you will have to buy them again.
-
-### Stages 💀
-
-Stages are composed of multiple monsters. If you kill all of them without dying, you will be allowed to play the next one. You will also be awarded XP and Gold.
-
-Also note that you can play all the levels an infinite amount of times meaning you can farm them.
 
 ## Documentation
 
